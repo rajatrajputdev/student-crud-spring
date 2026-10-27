@@ -33,4 +33,14 @@ public class StudentController {
         studentService.saveStudent(studentEntity);
         return new ResponseEntity<>("Student added in the database.",HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/delete-student/{studentEnrollmentNumber}")
+    public ResponseEntity<?> deleteStudent(@PathVariable String studentEnrollmentNumber){
+        StudentEntity student = studentService.getStudent(studentEnrollmentNumber).orElse(null);
+        if(student != null){
+            studentService.deleteStudent(student);
+            return new ResponseEntity<>("Student has been deleted from the database.", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Student not found in the database.", HttpStatus.NOT_FOUND);
+    }
 }

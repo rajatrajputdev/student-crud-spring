@@ -27,5 +27,8 @@ public class StudentService {
         studentAppRepository.insert(studentEntity);
     }
 
+    public void deleteStudent(StudentEntity studentEntity){
+        studentAppRepository.delete(studentEntity);
+    }
 }
 
