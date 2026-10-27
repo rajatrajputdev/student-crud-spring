@@ -1,5 +1,6 @@
 package net.rajatrajputdev.studentApp.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import net.rajatrajputdev.studentApp.models.StudentEntity;
 import net.rajatrajputdev.studentApp.service.StudentService;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @CrossOrigin(origins = "http://127.0.0.1:5500")
 @RestController
+@Tag(name = "Student CRUD API")
 public class StudentController {
 
     private final StudentService studentService;
