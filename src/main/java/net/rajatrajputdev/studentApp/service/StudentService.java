@@ -13,8 +13,11 @@ import java.util.Optional;
 @Component
 public class StudentService {
 
-    @Autowired
-    private StudentAppRepository studentAppRepository;
+    private final StudentAppRepository studentAppRepository;
+
+    public StudentService(StudentAppRepository studentAppRepository) {
+        this.studentAppRepository = studentAppRepository;
+    }
 
     public List<StudentEntity> getAllStudents(){
         return studentAppRepository.findAll();
