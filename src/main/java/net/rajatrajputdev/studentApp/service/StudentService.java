@@ -23,6 +23,9 @@ public class StudentService {
         return studentAppRepository.findByStudentEnrollment(studentEnrollment);
     }
 
+    public void saveStudent(StudentEntity studentEntity){
+        studentAppRepository.insert(studentEntity);
+    }
 
 }
 
