@@ -23,9 +23,7 @@ public class StudentController {
 
     @GetMapping("/get-student/{studentEnrollmentNumber}")
     public ResponseEntity<StudentEntity> getStudent(@PathVariable String studentEnrollmentNumber){
-        return studentService.getStudent(studentEnrollmentNumber)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        return studentService.getStudent(studentEnrollmentNumber);
     }
 
     @PostMapping("/create-student")
@@ -36,11 +34,11 @@ public class StudentController {
 
     @DeleteMapping("/delete-student/{studentEnrollmentNumber}")
     public ResponseEntity<?> deleteStudent(@PathVariable String studentEnrollmentNumber){
-        StudentEntity student = studentService.getStudent(studentEnrollmentNumber).orElse(null);
-        if(student != null){
-            studentService.deleteStudent(student);
-            return new ResponseEntity<>("Student has been deleted from the database.", HttpStatus.OK);
-        }
-        return new ResponseEntity<>("Student not found in the database.", HttpStatus.NOT_FOUND);
+        return studentService.deleteStudent(studentEnrollmentNumber);
+    }
+
+    @PutMapping("/update-student/{studentEnrollmentNumber}")
+    public ResponseEntity<?> updateStudent(@Valid @RequestBody StudentEntity studentEntity, @PathVariable String studentEnrollmentNumber){
+        return studentService.updateStudent(studentEntity, studentEnrollmentNumber);
     }
 }
